@@ -1,6 +1,6 @@
 module.exports = {
 
-  name: "Check Variable MODS",
+  name: "Check Variable MOD",
   section: "Conditions",
   meta: {
     version: '2.1.5',
