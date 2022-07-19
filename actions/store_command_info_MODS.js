@@ -20,6 +20,8 @@ module.exports = {
       'Command Time Restriction',
       'Command Actions Length',
       'Command User Primary Required Permission',
+      'Command Description',
+      'Command parameters',
     ];
     const storage = ['', 'Temp Variable', 'Server Variable', 'Global Variable'];
     return `${info[parseInt(data.info, 10)]} - ${storage[parseInt(data.storage, 10)]} (${data.varName})`;
@@ -30,9 +32,17 @@ module.exports = {
     let dataType = 'Unknown Type';
     switch (parseInt(data.info, 10)) {
       case 0:
+        dataType = 'Text';
+        break;
       case 1:
+        dataType = 'Text';
+        break;
       case 2:
+        dataType = 'Text';
+        break;
       case 3:
+        dataType = 'Text';
+        break;
       case 4:
         dataType = 'Text';
         break;
@@ -40,9 +50,20 @@ module.exports = {
         dataType = 'List';
         break;
       case 6:
+        dataType = 'Number';
+        break;
       case 7:
         dataType = 'Number';
         break;
+        case 8:
+        dataType = 'Number';
+        break;
+        case 9:
+          dataType = 'Text';
+          break;
+          case 10:
+            dataType = 'List';
+            break;
       default:
         break;
     }
@@ -53,14 +74,14 @@ module.exports = {
 
   html(_isEvent, data) {
     return `
-    <div style="position:absolute;bottom:0px;border: 1px solid #222;background:#000;color:#999;padding:3px;right:0px;z-index:999999">Versão 0.1</div>
+    <div style="position:absolute;bottom:0px;border: 1px solid #222;background:#000;color:#999;padding:3px;right:0px;z-index:999999">Versão 0.2</div>
     <div style="position:absolute;bottom:0px;border: 1px solid #222;background:#000;color:#999;padding:3px;left:0px;z-index:999999">dbmmods.com</div>
 
 <div style="float: left; width: 40%">
 <span class="dbminputlabel">Search Command By</span><br>
   <select id="searchCommandBy" class="round" onchange="glob.onChangeSame(this)">
-  <option value="2" selected>Same Command Prefix</option>
-  <option value="3">Same Slash Command</option>
+  <option value="2" selected>Same Text Command</option>
+  <option value="3">Same Interaction Command</option>
     <option value="0">Name</option>
     <option value="1">ID</option>
   </select>
@@ -81,6 +102,8 @@ module.exports = {
     <option value="5">Command Aliases</option>
     <option value="6">Command Time Restriction</option>
     <option value="7">Command Actions Length</option>
+    <option value="9">Command Description</option>
+     <option value="10">Command parameters</option>
   </select>
 </div><br><br><br>
 <div style="float: left; width: 35%; padding-top: 12px">
@@ -188,6 +211,13 @@ if(jp.query(command, '$..restriction') == "0"){ result = "None" }
       case 8:
           result = JSON.stringify(jp.query(command, '$..permissions2')).slice(2, -2).replace('_', ' ').toLowerCase();
           break; 
+                  case 9:
+            desc = jp.query(command, '$..description')
+            result = desc[0];
+            break;
+            case 10:
+              result = jp.query(command, '$..parameters');
+              break;
       default:
         break;
     }
