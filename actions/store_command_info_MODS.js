@@ -75,7 +75,8 @@ module.exports = {
     <option value="1">Command ID</option>
     <option value="2">Command Type</option>
     <option value="3">Command Restriction</option>
-    <option value="4">Command User Required Permission</option>
+    <option value="4">Command User Primary Required Permission</option>
+    <option value="8">Command Secondary Required Permission</option>
     <option value="5">Command Aliases</option>
     <option value="6">Command Time Restriction</option>
     <option value="7">Command Actions Length</option>
@@ -150,26 +151,20 @@ module.exports = {
         result = jp.query(command, '$.._id');
         break;
       case 2:
-        result =
-          jp.query(command, '$..comType') === 0 || ''
-            ? 'Normal Command'
-            : jp.query(command, '$..comType') === 1
-            ? 'Includes Word'
-            : jp.query(command, '$..comType') === 2
-            ? 'Matches Regular Expression'
-            : 'Any Message';
+if(jp.query(command, '$..comType') == "0"){ result = "Text command" }
+         if(jp.query(command, '$..comType') == "1"){ result = "Include word" }
+         if(jp.query(command, '$..comType') == "2"){ result = "Regular expression" }
+         if(jp.query(command, '$..comType') == "3"){ result = "Any message" }
+         if(jp.query(command, '$..comType') == "4"){ result = "Slash command" }
+         if(jp.query(command, '$..comType') == "5"){ result = "User menu command" }
+         if(jp.query(command, '$..comType') == "6"){ result = "Msg. menu command" }
         break;
       case 3:
-        result =
-          jp.query(command, '$..restriction') === 0
-            ? 'none'
-            : jp.query(command, '$..restriction') === 1
-            ? 'Server Only'
-            : jp.query(command, '$..restriction') === 2
-            ? 'Owner Only'
-            : jp.query(command, '$..restriction') === 3
-            ? 'DMs Only'
-            : 'Bot Owner Only';
+if(jp.query(command, '$..restriction') == "0"){ result = "None" }
+         if(jp.query(command, '$..restriction') == "1"){ result = "Server only" }
+         if(jp.query(command, '$..restriction') == "2"){ result = "Owner only" }
+         if(jp.query(command, '$..restriction') == "3"){ result = "DMs only" }
+         if(jp.query(command, '$..restriction') == "4"){ result = "Bot owner only" }
         break;
       case 4:
         result = JSON.stringify(jp.query(command, '$..permissions')).slice(2, -2).replace('_', ' ').toLowerCase();
@@ -189,9 +184,9 @@ module.exports = {
             ? 'none'
             : parseInt(jp.query(command, '$..name').length, 10) - 1;
         break;
-        case 8:
-          result = interaction.commandName
-          break;   
+      case 8:
+          result = JSON.stringify(jp.query(command, '$..permissions2')).slice(2, -2).replace('_', ' ').toLowerCase();
+          break; 
       default:
         break;
     }
