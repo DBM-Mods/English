@@ -15,10 +15,11 @@ module.exports = {
       'Command ID',
       'Command Type',
       'Command Restriction',
-      'Command User Required Permission',
+      'Command User Primary Required Permission',
       'Command Aliases',
       'Command Time Restriction',
       'Command Actions Length',
+      'Command User Primary Required Permission',
     ];
     const storage = ['', 'Temp Variable', 'Server Variable', 'Global Variable'];
     return `${info[parseInt(data.info, 10)]} - ${storage[parseInt(data.storage, 10)]} (${data.varName})`;
