@@ -19,9 +19,9 @@ module.exports = {
       'Command Aliases',
       'Command Time Restriction',
       'Command Actions Length',
-      'Command User Primary Required Permission',
+      'Command User Secondary Required Permission',
       'Command Description',
-      'Command parameters',
+      'Command Parameters',
     ];
     const storage = ['', 'Temp Variable', 'Server Variable', 'Global Variable'];
     return `${info[parseInt(data.info, 10)]} - ${storage[parseInt(data.storage, 10)]} (${data.varName})`;
@@ -74,7 +74,7 @@ module.exports = {
 
   html(_isEvent, data) {
     return `
-    <div style="position:absolute;bottom:0px;border: 1px solid #222;background:#000;color:#999;padding:3px;right:0px;z-index:999999">Versão 0.2</div>
+    <div style="position:absolute;bottom:0px;border: 1px solid #222;background:#000;color:#999;padding:3px;right:0px;z-index:999999">Versão 0.3</div>
     <div style="position:absolute;bottom:0px;border: 1px solid #222;background:#000;color:#999;padding:3px;left:0px;z-index:999999">dbmmods.com</div>
 
 <div style="float: left; width: 40%">
@@ -98,12 +98,12 @@ module.exports = {
     <option value="2">Command Type</option>
     <option value="3">Command Restriction</option>
     <option value="4">Command User Primary Required Permission</option>
-    <option value="8">Command Secondary Required Permission</option>
+    <option value="8">Command User Secondary Required Permission</option>
     <option value="5">Command Aliases</option>
     <option value="6">Command Time Restriction</option>
     <option value="7">Command Actions Length</option>
     <option value="9">Command Description</option>
-     <option value="10">Command parameters</option>
+     <option value="10">Command Parameters</option>
   </select>
 </div><br><br><br>
 <div style="float: left; width: 35%; padding-top: 12px">
@@ -149,7 +149,7 @@ module.exports = {
       if(parseInt(data.searchCommandBy, 10) === 2){
         command = jp.query(
           this.getDBM().Files.data.commands,
-          `$..[?(@.name=="${cache.msg.content
+          `$..[?(@.name==="${cache.msg.content
             .slice(this.getDBM().Files.data.settings.tag.length || cache.server.tag.length)
             .split(/ +/)
             .shift()}")]`,
@@ -168,8 +168,14 @@ module.exports = {
     let result;
     switch (parseInt(data.info, 10)) {
       case 0:
-        result =
-          jp.query(command, '$..name').length > 1 ? jp.query(command, '$..name')[0] : jp.query(command, '$..name');
+        if(parseInt(data.searchCommandBy, 10) === 2){
+          result = cache.msg.content
+              .slice(this.getDBM().Files.data.settings.tag.length || cache.server.tag.length)
+              .split(/ +/)
+              .shift()
+          } else {
+            result =
+            jp.query(command, '$..name').length > 1 ? jp.query(command, '$..name')[0] : jp.query(command, '$..name'); }      
         break;
       case 1:
         result = jp.query(command, '$.._id');
