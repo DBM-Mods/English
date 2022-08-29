@@ -57,7 +57,7 @@ module.exports = {
        document.getElementById('color').type = 'color'
       document.getElementById('btr1').style.display = 'none';
       document.getElementById('btr2').style.display = 'block';
-      })()"><button class="tiny compact ui icon button">Cor</button></a><a id="btr2" style="cursor:pointer;display:none" onclick="(function(){
+      })()"><button class="tiny compact ui icon button">Color</button></a><a id="btr2" style="cursor:pointer;display:none" onclick="(function(){
         document.getElementById('color').type = 'text';
         document.getElementById('btr1').style.display = 'block';
         document.getElementById('btr2').style.display = 'none';
