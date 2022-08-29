@@ -94,13 +94,13 @@ module.exports = {
         document.getElementById("iffalseContainer").style.display = "none";
       }
       if (event.value == "2") {
-        document.querySelector("[id='pants']").innerText = (`Action number`);
+        document.querySelector("[id='xinelas']").innerText = (`Action number`);
       }
       if (event.value == "3") {
-        document.querySelector("[id='Pinnies']").innerText = (`Skip Actions`);
+        document.querySelector("[id='xinelas']").innerText = (`Skip Actions`);
       }
       if (event.value == "4") {
-        document.querySelector("[id='Pinnies']").innerText = (`Anchor name`);
+        document.querySelector("[id='xinelas']").innerText = (`Anchor name`);
     }
   }
 
