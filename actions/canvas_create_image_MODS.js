@@ -32,11 +32,11 @@ module.exports = {
 
 <div>
   <div style="float: left; width: 50%;padding:0px 5px 0px 0px">
-  <span class="dbminputlabel">Width (px ou %)</span><br>
+  <span class="dbminputlabel">Width (px or %)</span><br>
     <input id="width" class="round" type="text" placeholder="Leave blank for default" value="100%"><br>
   </div>
   <div style="float: right; width: 50%;padding:0px">
-  <span class="dbminputlabel">Height (px ou %)</span><br>
+  <span class="dbminputlabel">Height (px or %)</span><br>
     <input id="height" class="round" type="text" placeholder="Leave blank for default" value="100%"><br>
   </div>
 </div>
