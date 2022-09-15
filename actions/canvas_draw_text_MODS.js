@@ -3,8 +3,8 @@ module.exports = {
 name: "Canvas Draw Text on Image MOD",
 section: "Image Editing",
 meta: {
-    version: '2.1.5',
-    preciseCheck: true,
+    version: '2.1.6',
+    preciseCheck: false,
     author: '[XinXyla - 172782058396057602]',
     authorUrl: 'https://github.com/DBM-Mods/English',
     downloadURL: 'https://github.com/DBM-Mods/English/archive/refs/heads/main.zip',
