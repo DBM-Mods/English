@@ -2,8 +2,8 @@ module.exports = {
   name: 'Translate MOD',
   section: 'Other Stuff',
   meta: {
-    version: '2.1.5',
-    preciseCheck: true,
+    version: '2.1.6',
+    preciseCheck: false,
     author: '[Tempest - 321400509326032897]',
     authorUrl: 'https://github.com/DBM-Mods/English',
     downloadURL: 'https://github.com/DBM-Mods/English/archive/refs/heads/main.zip',
